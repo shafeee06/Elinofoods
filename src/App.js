@@ -1,0 +1,31 @@
+import "./App.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home/home";
+import Products from "./pages/ProductListing/ProductListing";
+import LoginPage from "./pages/Login/LoginPage";
+import Profile from "./pages/Profile/Profile";
+import { CartProvider } from "./components/CartContext";
+import { AuthProvider } from "./auth/AuthContext";
+import CartSidebar from "./components/cartSidebar";
+
+function App() {
+  return (
+    <AuthProvider>
+      <CartProvider>
+        <Router>
+          <div className="App">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/profile" element={<Profile />} />
+            </Routes>
+            <CartSidebar />
+          </div>
+        </Router>
+      </CartProvider>
+    </AuthProvider>
+  );
+}
+
+export default App;
